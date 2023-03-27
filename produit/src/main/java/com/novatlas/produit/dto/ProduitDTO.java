@@ -1,0 +1,15 @@
+package com.novatlas.produit.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor @AllArgsConstructor @Data
+public class ProduitDTO {
+    private Long idProduit;
+
+    private String nomProduit;
+
+    private Double prixProduit;
+
+}

@@ -1,0 +1,205 @@
+version: '3'
+#networks:
+#  mysqlnetwork:
+
+services:
+
+#========================================DATABASES==============================
+
+#  commandatabase:
+#    image: mariadb
+#    restart: always
+#    environment:
+#      - MYSQL_ROOT_PASSWORD=command
+#      - MYSQL_DATABASE=commanddata
+#      - MYSQL_USER=root
+#      - MYSQL_PASSWORD=novatlas
+#    ports:
+#      - 3307:3306
+#    networks:
+#      mysqlnetwork:
+#
+#
+#
+  produitdatabase:
+    image: mysql:latest
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=produit
+      - MYSQL_DATABASE=produitdata
+      - MYSQL_PASSWORD=novatlas
+    ports:
+      - "3309:3306"
+
+#    networks:
+#      mysqlnetwork:
+#
+#
+#
+#  livraisondatabase:
+#    image: mariadb
+#    restart: always
+#    environment:
+#      - MYSQL_ROOT_PASSWORD=livraison
+#      - MYSQL_DATABASE=livraisondata
+#      - MYSQL_USER=root
+#      - MYSQL_PASSWORD=novatlas
+#    ports:
+#      - 3308:3306
+##    networks:
+##      mysqlnetwork:
+#
+#
+##===========================PHPMYADMIN FOR EACH DATABASE========================
+#
+#
+#
+  produitphpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8081:80"
+    depends_on:
+      - produitdatabase
+#    networks:
+#      mysqlnetwork:
+    environment:
+      PMA_HOST: produitdatabase
+      MYSQL_ROOT_PASSWORD: produit
+      MYSQL_USER: root
+      MYSQL_PASSWORD: novatlas
+
+##
+##
+##
+##
+##
+#  commandphpmyadmin:
+#    image: phpmyadmin/phpmyadmin
+#    ports:
+#      - "8082:80"
+#    depends_on:
+#      - commandatabase
+##    networks:
+##      mysqlnetwork:
+#    environment:
+#      PMA_HOST: commandatabase
+#      MYSQL_ROOT_PASSWORD: command
+#      MYSQL_USER: root
+#      MYSQL_PASSWORD: novatlas
+#
+##
+#  livraisonphpmyadmin:
+#    image: phpmyadmin/phpmyadmin
+#    ports:
+#      - "8083:80"
+#    depends_on:
+#      - livraisondatabase
+##    networks:
+##      mysqlnetwork:
+#    environment:
+#      PMA_HOST: livraisondatabase
+#      MYSQL_ROOT_PASSWORD: livraison
+#      MYSQL_USER: root
+#      MYSQL_PASSWORD: novatlas
+#
+#
+#  adminer:
+#    image: adminer
+#    restart: always
+#    ports:
+#      - 8080:8080
+##    networks:
+##      mysqlnetwork:
+#
+#
+##===================================SERVICES====================================
+#
+#  eureka:
+#    build:
+#      context: ./Eureka
+#      dockerfile: Dockerfile
+#    ports:
+#      - 8761:8761
+#    environment:
+#      - eureka.client.service-url.defaultZone=http://eureka:8761/eureka/
+#    networks:
+#      mysqlnetwork:
+##
+#  gateway:
+#    restart: always
+#    build:
+#      context: ./gateway
+#      dockerfile: Dockerfile
+#    ports:
+#      - 8092:8092
+#    depends_on:
+#      - eureka
+#    environment:
+#      - eureka.client.service-url.defaultZone=http://eureka:8761/eureka/
+##    networks:
+##      mysqlnetwork:
+#
+#
+#
+#
+#
+  produit:
+    restart: always
+    build:
+      context: ./produit
+      dockerfile: Dockerfile
+    ports:
+      - 8087:8087
+    depends_on:
+      - produitdatabase
+#      - eureka
+    environment:
+#      - SPRING_DATASOURCE_URL=jdbc:mysql://produitdatabase:3307/produitdb
+      - eureka.client.service-url.defaultZone=http://eureka:8761/eureka/
+#
+#
+#  livraison:
+#    restart: always
+#    build:
+#      context: ./Livraison
+#      dockerfile: Dockerfile
+#    ports:
+#    - 8088:8088
+#    depends_on:
+#      - livraisondatabase
+#      - eureka
+#    environment:
+#      - eureka.client.service-url.defaultZone=http://eureka:8761/eureka/
+##    networks:
+##      mysqlnetwork:
+#
+#  commande:
+#    restart: always
+#    build:
+#      context: ./Command
+#      dockerfile: Dockerfile
+#    ports:
+#      - 8089:8089
+#    depends_on:
+#      - commandatabase
+#      - eureka
+#    environment:
+#      - eureka.client.service-url.defaultZone=http://eureka:8761/eureka/
+##    networks:
+##      mysqlnetwork:
+#
+
+#  configserver:
+#    restart: always
+#    build:
+#      context: ./configserver
+#      dockerfile: Dockerfile
+#    ports:
+#      - 9296:9296
+#    depends_on:
+##      - commandatabase
+#      - eureka
+#    environment:
+#      - eureka.client.service-url.defaultZone=http://eureka:8761/eureka/
+#    networks:
+#      mysqlnetwork:

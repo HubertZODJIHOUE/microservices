@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Command/Command.iml" filepath="$PROJECT_DIR$/Command/Command.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Livraison/Livraison.iml" filepath="$PROJECT_DIR$/Livraison/Livraison.iml" />
+      <module fileurl="file://$PROJECT_DIR$/adresse/adresse.iml" filepath="$PROJECT_DIR$/adresse/adresse.iml" />
+      <module fileurl="file://$PROJECT_DIR$/command_produit/command_produit.iml" filepath="$PROJECT_DIR$/command_produit/command_produit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/configserver/configserver.iml" filepath="$PROJECT_DIR$/configserver/configserver.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eureka/eureka.iml" filepath="$PROJECT_DIR$/eureka/eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gateway/gateway.iml" filepath="$PROJECT_DIR$/gateway/gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/livraison_command/livraison_command.iml" filepath="$PROJECT_DIR$/livraison_command/livraison_command.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/micorserorisinitial.iml" filepath="$PROJECT_DIR$/.idea/micorserorisinitial.iml" />
+      <module fileurl="file://$PROJECT_DIR$/produit/produit.iml" filepath="$PROJECT_DIR$/produit/produit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/user/user.iml" filepath="$PROJECT_DIR$/user/user.iml" />
+      <module fileurl="file://$PROJECT_DIR$/user_adress/user_adress.iml" filepath="$PROJECT_DIR$/user_adress/user_adress.iml" />
+    </modules>
+  </component>
+</project>
